@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        body {
+            padding: 50px 0;
+            text-align: center;
+            background: #f5f5f5;
+        }
         @keyframes slider {
             0% {
                 background-position: 0 0;
@@ -17,7 +22,8 @@
         }
 
         .loading-wrapper {
-            width: 200px;
+            margin: 0 auto;
+            width: 80%;
             height: 15px;
             border-radius: 30px;
             border: 1px solid #27bfeb;
@@ -53,6 +59,25 @@
             transparent 75%,
             transparent);
         }
+
+        .number {
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .btn-finish {
+            margin-top: 50px;
+            border: 1px solid #ccc;
+            background: #fff;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            color: #888;
+        }
+
+        .btn-finish:hover {
+            color: #27bfeb;
+        }
     </style>
 </head>
 
@@ -61,6 +86,7 @@
         <div id="J_loading" class="loading-container"></div>
     </div>
     <div id="J_number" class="number"></div>
+    <button id="J_finish" class="btn-finish">完成加载</button>
     <script>
         class LoadingBar {
 
@@ -114,8 +140,13 @@
 
         }
 
-        var loadbar = new LoadBar('J_loading', 'J_number');
+        var loadbar = new LoadingBar('J_loading', 'J_number');
         loadbar.start();
+
+        var finishBtn = document.getElementById('J_finish');
+        finishBtn.addEventListener('click', function() {
+            loadbar.finish();
+        })
     </script>
 </body>
 
