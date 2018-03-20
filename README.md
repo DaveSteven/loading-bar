@@ -10,3 +10,6 @@ loadingbar.start(); // 开始加载
 
 loadingbar.finish(); // 完成加载
 ```
+
+## Demo
+![](https://github.com/DaveSteven/imgs/blob/master/images/loadingbar.gif)
