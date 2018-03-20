@@ -3,8 +3,8 @@ export default class LoadingBar {
     constructor(loadingEl, numberEl) {
         this.loadingEl = document.getElementById(loadingEl);
         this.numberEl = document.getElementById(numberEl);
-        this.timer = '';
-        this.loading = 0;
+        this.timer = null;
+        this.process = 0;
     }
 
     // 获取某个范围的随机数
@@ -16,21 +16,27 @@ export default class LoadingBar {
 
     // 开始加载
     start() {
-        if (this.loading < 80) {
+        if (this.process < 80) {
 
+            // 随机时间，或快或慢
+            let randomTime = this.getRangeRandomInt(100, 2000); 
+
+            // 定时器
             this.timer = setTimeout(() => {
 
-                if (this.loading < 60) {
-                    this.loading += this.getRangeRandomInt(5, 20);
+                if (this.process < 60) {
+                    // 默认增长速度
+                    this.process += this.getRangeRandomInt(5, 20);
                 } else {
-                    this.loading += this.getRangeRandomInt(1, 5);
+                    // 减慢增长速度
+                    this.process += this.getRangeRandomInt(1, 5);
                 }
 
-                this.loadingEl.style.width = `${this.loading}%`;
-                this.numberEl.innerHTML = `<span class="num">${this.loading}</span>%`;
+                this.loadingEl.style.width = `${this.process}%`;
+                this.numberEl.innerHTML = `<span class="num">${this.process}</span>%`;
                 this.start();
 
-            }, this.getRangeRandomInt(100, 2000))
+            }, randomTime)
 
         }
     }
